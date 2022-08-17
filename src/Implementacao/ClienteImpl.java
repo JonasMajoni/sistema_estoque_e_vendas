@@ -246,9 +246,7 @@ public class ClienteImpl {
     
     
     
-    
-    
-    public void pesquisarCliente(JTable jTable1, String codCliente) {
+    public void pesquisarCliente(JTable jTable1, Integer codCliente, String numregistro) {
 
         while (jTable1.getModel().getRowCount() > 0) {
             ((DefaultTableModel) jTable1.getModel()).removeRow(0);
@@ -260,18 +258,18 @@ public class ClienteImpl {
         ResultSet rst = null;
 
         try {
-            String sql = "SELECT * FROM cliente WHERE (codCliente = ?)";
-
-            PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
-            pst.setString(1, codCliente);
+            String sql = "SELECT * FROM cliente WHERE (codCliente = ? OR numregistro like ?)";
             
+            PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
+            pst.setInt(1, codCliente);
+            pst.setString(2, numregistro);            
             rst = pst.executeQuery();
-
+           
             while (rst.next()) {
                 DefaultTableModel tabelaClientes = (DefaultTableModel) jTable1.getModel(); //pega modelo da tabela
 
                 String codcliente = rst.getString("codCliente");
-                String numregistro = rst.getString("numregistro");
+                String nregistro = rst.getString("numregistro");
                 String nome = rst.getString("nome");
                 String sobrenome = rst.getString("sobrenome");
                 String endereco = rst.getString("endereco");                
@@ -281,14 +279,14 @@ public class ClienteImpl {
                 String Dt_registro = rst.getString("dt_registro");
                 String email = rst.getString("email");
 
-                Object[] obj = {codcliente, numregistro, nome, sobrenome, endereco, cidade, telefone, Dt_nascimento, Dt_registro, email};
+                Object[] obj = {codcliente, nregistro, nome, sobrenome, endereco, cidade, telefone, Dt_nascimento, Dt_registro, email};
 
                 tabelaClientes.addRow(obj);
 
             };
 
         } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Erro ao buscar os dados na tabela para tela. " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar os dados na tabela para tela. " + ex.getMessage());
         }
 
         conexao.desconectar();

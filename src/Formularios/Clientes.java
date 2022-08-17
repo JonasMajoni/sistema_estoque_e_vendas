@@ -716,26 +716,26 @@ public class Clientes extends javax.swing.JInternalFrame {
     private void BtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtPesquisarActionPerformed
         // CONFIGURAÇÃO BOTAO PESQUISAR USUARIO CADASTRADO
 
-        /*String cliente = JOptionPane.showInputDialog("Digite o codigo do cliente para realizar a pesquisa.");
-         if (cliente.equals("")) {
-         return;
-         }
-         String C = "";
+        String cliente = JOptionPane.showInputDialog("Digite o cod do cliente ou CPF/CNPJ para realizar a pesquisa.");
+        if (cliente.equals("")) {
+            return;
+        }
+        Integer codCliente = 0;
         
-         try {
-         NomeLogin = usuario;
-         } catch (Exception e) {
-         NomeLogin = "";
-         }
+        try {
+            codCliente = Integer.parseInt(cliente);
+        } catch (Exception e) {
+            codCliente = 0;
+        }
         
-         UsuarioImpl usuarioimpl = new UsuarioImpl();
-         usuarioimpl.pesquisarUsuario(TabelaUsuarios, NomeLogin);
-        
-         if(TabelaUsuarios.getRowCount() > 0) {
-         TabelaUsuarios.setRowSelectionInterval(UsuarioAtual, UsuarioAtual); 
-         } else {
-         JOptionPane.showMessageDialog(null, "Não existe o usuario cadastrado. " );
-         }*/
+        ClienteImpl clienteImpl = new ClienteImpl();
+        clienteImpl.pesquisarCliente(TabelaClientes, codCliente, cliente);
+         
+        if(TabelaClientes.getRowCount() > 0){
+            TabelaClientes.setRowSelectionInterval(ClienteAtual, ClienteAtual);
+        }else{
+            JOptionPane.showMessageDialog(null, "Não retornou dados. " );
+        }
         visualizarDados();
 
     }//GEN-LAST:event_BtPesquisarActionPerformed
