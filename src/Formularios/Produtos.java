@@ -227,6 +227,11 @@ public class Produtos extends javax.swing.JInternalFrame {
         bt_atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refresh.png"))); // NOI18N
         bt_atualizar.setBorder(null);
         bt_atualizar.setBorderPainted(false);
+        bt_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_atualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -617,6 +622,11 @@ public class Produtos extends javax.swing.JInternalFrame {
         visualizarDados();
         
     }//GEN-LAST:event_TabelaProdutosKeyReleased
+
+    private void bt_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_atualizarActionPerformed
+        
+         VisualizarCadastros();
+    }//GEN-LAST:event_bt_atualizarActionPerformed
     
     
     private void visualizarDados(){

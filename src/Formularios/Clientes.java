@@ -275,6 +275,11 @@ public class Clientes extends javax.swing.JInternalFrame {
         bt_atualizar.setToolTipText("Atualizar");
         bt_atualizar.setBorder(null);
         bt_atualizar.setBorderPainted(false);
+        bt_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_atualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -436,6 +441,9 @@ public class Clientes extends javax.swing.JInternalFrame {
         BtEditar.setEnabled(true);
         BtCancelar.setEnabled(false); //FALSE
         BtPesquisar.setEnabled(true);
+        bt_atualizar.setEnabled(true);
+                
+                
 
         //Desabilitando as caixas de textos depois de apertar cancelar.
         TxtCodCliente.setEnabled(false);
@@ -477,6 +485,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         BtEditar.setEnabled(false);
         BtCancelar.setEnabled(true); //TRUE
         BtPesquisar.setEnabled(false);
+        bt_atualizar.setEnabled(false);
 
         //Habilitando as caixas de textos enquanto estiver no botao adicionar.
         //TxtCodCliente.setEnabled(true);
@@ -567,6 +576,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         BtEditar.setEnabled(true);
         BtCancelar.setEnabled(false); //FALSE
         BtPesquisar.setEnabled(true);
+        bt_atualizar.setEnabled(true);
 
         //Desabilitando as caixas de textos depois de salvar.
         TxtCodCliente.setEnabled(false);
@@ -619,7 +629,10 @@ public class Clientes extends javax.swing.JInternalFrame {
         BtEditar.setEnabled(false);
         BtCancelar.setEnabled(true); //TRUE
         BtPesquisar.setEnabled(false);
+        bt_atualizar.setEnabled(false);
 
+        
+        
         //Habilitando as caixas de textos enquanto estiver no botao EDITAR.
         dataRegistro.setEnabled(true);
         TxtNomeCliente.setEnabled(true);
@@ -811,6 +824,13 @@ public class Clientes extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_TxtTelefoneFocusLost
+
+    private void bt_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_atualizarActionPerformed
+        // TODO add your handling code here:
+        
+         VisualizarCadastros();
+        
+    }//GEN-LAST:event_bt_atualizarActionPerformed
 
     private void visualizarDados() {
 
