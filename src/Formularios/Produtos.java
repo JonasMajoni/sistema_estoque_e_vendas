@@ -2,7 +2,7 @@ package Formularios;
 
 
 import Classes.Produto;
-import Classes.Utilidades;
+import utilidades.Utilidades;
 import Implementacao.ProdutoImpl;
 import static java.lang.Integer.parseInt;
 import java.text.DecimalFormat;
@@ -326,8 +326,6 @@ public class Produtos extends javax.swing.JInternalFrame {
                 .addComponent(bt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCancelarActionPerformed

@@ -2,7 +2,7 @@ package Formularios;
 
 
 import Classes.Usuario;
-import Classes.Utilidades;
+import utilidades.Utilidades;
 import Implementacao.UsuarioImpl;
 import java.text.SimpleDateFormat;
 import java.util.Date;

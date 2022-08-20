@@ -2,7 +2,7 @@ package Formularios;
 
 import Classes.Opcao;
 import Classes.Dados;
-import Classes.Utilidades;
+import utilidades.Utilidades;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -256,7 +256,7 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         CmbCliente.addItem(opcao.toString());
         for(int i=0; i < dados.NumeroDeClientes(); i++){
             opcao = new Opcao(
-            dados.getClientes()[i].getCodCliente(),
+            dados.getClientes()[i].getCodCliente().toString(),
             dados.getClientes()[i].getNome() + " " +
             dados.getClientes()[i].getSobrenome());
             

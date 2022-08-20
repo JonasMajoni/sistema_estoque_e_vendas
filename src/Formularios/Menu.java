@@ -3,6 +3,7 @@ package Formularios;
 import Classes.BackGround;
 import Classes.Dados;
 import Implementacao.UsuarioImpl;
+import utilidades.PosicaoFormulario;
 
 
 public class Menu extends javax.swing.JFrame {
@@ -11,6 +12,8 @@ public class Menu extends javax.swing.JFrame {
     private String senha;
     private String usuario;
 
+    PosicaoFormulario frame= new PosicaoFormulario();
+    
     public void setUsuarioImpl (UsuarioImpl usuarioimpl){
         this.usuarioimpl = usuarioimpl;        
     }
