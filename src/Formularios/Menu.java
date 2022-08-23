@@ -12,7 +12,7 @@ public class Menu extends javax.swing.JFrame {
     private String senha;
     private String usuario;
 
-    PosicaoFormulario frame= new PosicaoFormulario();
+    PosicaoFormulario form = new PosicaoFormulario();
     
     public void setUsuarioImpl (UsuarioImpl usuarioimpl){
         this.usuarioimpl = usuarioimpl;        
@@ -202,26 +202,24 @@ public class Menu extends javax.swing.JFrame {
         
         Usuarios usuarios = new Usuarios();
         usuarios.setUsuarioImpl(usuarioimpl);
-        DesktopPainelMenu.add(usuarios);
-        usuarios.show();
-        
+        form.centralizarFormulario(usuarios, DesktopPainelMenu);
         
     }//GEN-LAST:event_MenuArquivosUsuariosActionPerformed
 
     private void MenuArquivosProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuArquivosProdutosActionPerformed
         // TODO add your handling code here:
-        Produtos produtos = new Produtos();
-        DesktopPainelMenu.add(produtos);
-        produtos.show();
         
+        Produtos produtos = new Produtos();
+        form.centralizarFormulario(produtos, DesktopPainelMenu);
+
     }//GEN-LAST:event_MenuArquivosProdutosActionPerformed
 
     private void MenuArquivosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuArquivosClientesActionPerformed
         // TODO add your handling code here:
         
         Clientes clientes = new Clientes();
-        DesktopPainelMenu.add(clientes);        
-        clientes.show();
+        form.centralizarFormulario(clientes, DesktopPainelMenu);
+   
     }//GEN-LAST:event_MenuArquivosClientesActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
