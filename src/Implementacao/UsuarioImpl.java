@@ -30,7 +30,6 @@ public class UsuarioImpl {
     
     
     
-    
     //INSERIR DADOS DO USUARIO NO BANCO DE DADOS
     public void inserirUsuario(Usuario usuario) {
         ConexaoDB conexao = new ConexaoDB();
@@ -435,6 +434,39 @@ public class UsuarioImpl {
             JOptionPane.showMessageDialog(null, "Erro ao consultar o perfil do usuario " + ex.getMessage());
         }
         return aux;
+    }
+    
+    
+    //EM ANDAMENTO
+    public void AlterarSenha(Usuario usuario) {
+        ConexaoDB conexao = new ConexaoDB();
+        conexao.conectar();
+        
+        ResultSet rst = null;
+        
+        String senhaAtual = usuario.getSenha();
+        String senhaNova = "";
+        
+        if(senhaAtual == senhaNova){
+            JOptionPane.showMessageDialog(null, "A nova senha não pode ser igual a senha antiga.");
+        } else{
+            
+            try {
+            String sql = "UPDATE usuario"
+                         + " SET  Senha = ?, "
+                         + "      ConfirmarSenha = ?, ";
+            
+            PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
+            pst.setString(1, usuario.getSenha());
+            pst.setString(2, usuario.getConfirmarSenha());
+            rst = pst.executeQuery();
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar a senha. " + ex.getMessage());
+        }
+        }
+       
     }
 
 }
