@@ -1,6 +1,7 @@
 package Formularios;
 
-import Classes.Dados;
+import Classes.Usuario;
+import Implementacao.UsuarioImpl;
 import javax.swing.JOptionPane;
 
 
@@ -8,11 +9,6 @@ public class AlterarSenha extends javax.swing.JDialog {
 
     private String senha;
     private String usuario;
-    private Dados dados;
-
-    public void setDados(Dados dados){
-        this.dados = dados;
-    }
     
     public void setupUsuario(String usuario){
         this.usuario = usuario;
@@ -141,46 +137,14 @@ public class AlterarSenha extends javax.swing.JDialog {
 
     private void BotaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAlterarActionPerformed
         // CÓDIGO DO BOTAO ALTERAR
-        
-        String SenhaAtual = new String(TxtSenhaAtual.getPassword());
-        String SenhaNova = new String(TxtNovaSenha.getPassword());
-        String ConfirmarnovaSenha = new String(TxtConfNvSenha.getPassword());
-        
-        if(SenhaAtual.equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Digite a senha atual para realizar a alteração.");
-            TxtSenhaAtual.requestFocusInWindow();
-            return;
-        }
-        if(SenhaNova.equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Digite a nova senha para realizar a alteração.");
-            TxtNovaSenha.requestFocusInWindow();
-            return;
-        }
-        if(ConfirmarnovaSenha.equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Confirme a nova senha para realizar a alteração.");
-            TxtConfNvSenha.requestFocusInWindow();
-            return;
-        }
-        
-        //VALIDANDO SE A SENHA ATUAL É CORRESPONDENTE COM A DIGITADA
-        if(!SenhaAtual.equals(senha)){
-            JOptionPane.showMessageDialog(rootPane, "A senha atual que você digitou está incorreta, digite novamente.");
-            TxtSenhaAtual.setText("");
-            TxtSenhaAtual.requestFocusInWindow();
-            return;
-        }
-        
-        //VALIDANDO SE A NOVA SENHA É CORRESPONDENTE COM A CONFIRMACAO DE SENHA
-        if(!SenhaNova.equals(ConfirmarnovaSenha)){
-            JOptionPane.showMessageDialog(rootPane, "As senhas digitadas não conferem, digite novamente.");
-            TxtConfNvSenha.setText("");
-            TxtConfNvSenha.requestFocusInWindow();
-            return;
-        }           
-           
-        
-        dados.AlterarSenha(usuario, SenhaNova);
-        JOptionPane.showMessageDialog(rootPane, "Senha alterada com sucesso.");
+
+        Usuario usuari = new Usuario();
+        usuari.setSenha(TxtNovaSenha.getText());
+        usuari.setConfirmarSenha(TxtConfNvSenha.getText());
+        usuari.setNomeLogin(usuario);
+
+        UsuarioImpl usuarioImpl = new UsuarioImpl();
+        usuarioImpl.AlterarSenha(usuari, senha);
         this.dispose();
     }//GEN-LAST:event_BotaoAlterarActionPerformed
 

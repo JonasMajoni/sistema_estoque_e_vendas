@@ -2,6 +2,8 @@ package Implementacao;
 
 import Classes.Usuario;
 import ConexaoDB.ConexaoDB;
+import Formularios.AlterarSenha;
+import Formularios.Menu;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,9 +29,6 @@ public class UsuarioImpl {
         }
     }
 
-    
-    
-    
     //INSERIR DADOS DO USUARIO NO BANCO DE DADOS
     public void inserirUsuario(Usuario usuario) {
         ConexaoDB conexao = new ConexaoDB();
@@ -39,7 +38,6 @@ public class UsuarioImpl {
         ResultSet rst = null;
 
         //JOptionPane.showMessageDialog(null, " usuario.getNomeLogin() " + usuario.getNomeLogin());
-
         try {
             String sql = "SELECT COUNT(*) existe FROM usuario WHERE NomeLogin = ?";
             PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
@@ -62,8 +60,6 @@ public class UsuarioImpl {
         }
 
        // JOptionPane.showMessageDialog(null, " LoginUsuarioExiste " + LoginUsuarioExiste);
-
-        
         if (LoginUsuarioExiste) {
             try {
                 String sql = " UPDATE usuario "
@@ -97,8 +93,7 @@ public class UsuarioImpl {
                 pst.setString(9, usuario.getNomeLogin());
 
                 pst.execute();
-                
-                
+
                 JOptionPane.showMessageDialog(null, "Salvo com Sucesso!");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao alterar os dados do usuario no banco de dados." + ex.getMessage());
@@ -117,7 +112,6 @@ public class UsuarioImpl {
                 dataSQLFim = java.sql.Date.valueOf(dataFim);
 
                //JOptionPane.showMessageDialog(null, " testa data " + dataInicio);
-
                 pst.setString(1, usuario.getNomeLogin());
                 pst.setString(2, usuario.getNome());
                 pst.setString(3, usuario.getSobrenome());
@@ -136,31 +130,28 @@ public class UsuarioImpl {
         }
         conexao.desconectar();
     }
-    
-    
-    
-    
+
     public boolean UsuarioExiste(Usuario usuario) {
-        
+
         ConexaoDB conexao = new ConexaoDB();
         conexao.conectar();
-        
+
         ResultSet rst = null;
         boolean UsuExiste = false;
-        
+
         try {
             String sql = "SELECT COUNT(*) existe FROM usuario WHERE NomeLogin = ?";
             PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
             pst.setString(1, usuario.getNomeLogin());
-            
+
             rst = pst.executeQuery();
 
             while (rst.next()) {
                 Integer aux = rst.getInt("existe");
-                
+
                 if (aux.equals(0)) {
-                   UsuExiste = false;
-                } else{
+                    UsuExiste = false;
+                } else {
                     UsuExiste = true;
                 }
             }
@@ -169,19 +160,15 @@ public class UsuarioImpl {
             JOptionPane.showMessageDialog(null, "Erro ao consultar se o usuario já existe." + ex.getMessage());
             return false;
         }
-        
-        if(UsuExiste){
+
+        if (UsuExiste) {
             JOptionPane.showMessageDialog(null, "Este Login já existe.");
             return false;
         }
-        
+
         conexao.desconectar();
         return true;
     }
-    
-    
-    
-    
 
     //INSERINDO OS DADOS NA TABELA
     public void popularTabela(JTable jTable1) {
@@ -225,11 +212,7 @@ public class UsuarioImpl {
 
         conexao.desconectar();
     }
-    
-    
 
-    
-    
     public void excluirUsuario(Usuario usuario) {
 
         ConexaoDB conexao = new ConexaoDB();
@@ -248,9 +231,6 @@ public class UsuarioImpl {
 
     }
 
-    
-    
-    
     //MOSTRAR DADOS NA TABELA
     public void MostrarDados(Usuario usuario) {
 
@@ -285,10 +265,6 @@ public class UsuarioImpl {
 
     }
 
-    
-    
-    
-    
     public void pesquisarUsuario(JTable jTable1, String NomeLogin) {
 
         while (jTable1.getModel().getRowCount() > 0) {
@@ -305,7 +281,7 @@ public class UsuarioImpl {
 
             PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
             pst.setString(1, NomeLogin);
-            
+
             rst = pst.executeQuery();
 
             while (rst.next()) {
@@ -328,16 +304,12 @@ public class UsuarioImpl {
             };
 
         } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Erro ao buscar os dados na tabela para tela. " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar os dados na tabela para tela. " + ex.getMessage());
         }
 
         conexao.desconectar();
-     }
-     
-    
-    
-    
-    
+    }
+
     //VALIDAR LOGIN E SENHA DE USUARIO AO ENTRAR NO SISTEMA
     public boolean ValidarUsuario(Usuario usuario) {
         ConexaoDB conexao = new ConexaoDB();
@@ -380,7 +352,7 @@ public class UsuarioImpl {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar se a senha existe no banco de dados. " + ex.getMessage());
-             return false;
+            return false;
         }
 
         //VERIFICANDO SE O USUARIO ESTA ATIVO OU INATIVO NO SISTEMA
@@ -396,20 +368,17 @@ public class UsuarioImpl {
                 Integer aux = rst.getInt("existe");
                 if (aux.equals(0)) {
                     JOptionPane.showMessageDialog(null, "Usuario inativo.", "", JOptionPane.CANCEL_OPTION);
-                     return false;
+                    return false;
                 }
             }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar se o usuario esta inativo no banco de dados. " + ex.getMessage());
-             return false;
+            return false;
         }
         
         return true;
     }
-    
-    
-    
 
     //VERIFICA SE O USUARIO É ADM OU FUNCIONARIO
     public Integer VerificarPerfil(Usuario usuario) {
@@ -435,38 +404,67 @@ public class UsuarioImpl {
         }
         return aux;
     }
-    
-    
+
     //EM ANDAMENTO
-    public void AlterarSenha(Usuario usuario) {
+    public void AlterarSenha(Usuario usuario, String senhaAnterior) {
         ConexaoDB conexao = new ConexaoDB();
         conexao.conectar();
-        
+
         ResultSet rst = null;
-        
+
         String senhaAtual = usuario.getSenha();
-        String senhaNova = "";
-        
-        if(senhaAtual == senhaNova){
-            JOptionPane.showMessageDialog(null, "A nova senha não pode ser igual a senha antiga.");
-        } else{
-            
-            try {
-            String sql = "UPDATE usuario"
-                         + " SET  Senha = ?, "
-                         + "      ConfirmarSenha = ?, ";
-            
+        String senhaAntiga = "";
+        try {
+            String sql = "SELECT Senha FROM usuario where NomeLogin = ? and Senha = ?";
+
             PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
-            pst.setString(1, usuario.getSenha());
-            pst.setString(2, usuario.getConfirmarSenha());
+
+            pst.setString(1, usuario.getNomeLogin());
+            pst.setString(2, usuario.getSenha());
+
             rst = pst.executeQuery();
-            
-            
+
+            while (rst.next()) {
+                senhaAntiga = rst.getString("Senha");
+            }
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao alterar a senha. " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Falha ao verificar no banco. " + ex.getMessage());
+            return;
         }
+
+        
+        
+        
+        
+        if(senhaAnterior != senhaAntiga){
+            JOptionPane.showMessageDialog(null, "Senha atual inválida");
+            return;
         }
-       
+
+        if (senhaAtual.equals(senhaAntiga)) {
+            JOptionPane.showMessageDialog(null, "A nova senha não pode ser igual a senha antiga.");
+            return;
+        } else {
+
+            try {
+                String sql = "UPDATE usuario"
+                        + " SET  Senha = ?, "
+                        + "      ConfirmarSenha = ? "
+                        + "WHERE  NomeLogin = ?";
+
+                PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
+                pst.setString(1, usuario.getSenha());
+                pst.setString(2, usuario.getConfirmarSenha());
+                pst.setString(3, usuario.getNomeLogin());
+                pst.execute();
+                
+                JOptionPane.showMessageDialog(null, "Senha alterada com sucesso.");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao alterar a senha. " + ex.getMessage());
+            }
+        }
+        conexao.desconectar();
     }
 
 }

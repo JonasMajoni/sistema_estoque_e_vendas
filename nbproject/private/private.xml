@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/desenvolvimentoJAVA/sistema_estoque_e_vendas/src/Formularios/Produtos.java</file>
             <file>file:/C:/desenvolvimentoJAVA/sistema_estoque_e_vendas/src/Formularios/Usuarios.java</file>
+            <file>file:/C:/desenvolvimentoJAVA/sistema_estoque_e_vendas/src/Formularios/Menu.java</file>
             <file>file:/C:/desenvolvimentoJAVA/sistema_estoque_e_vendas/src/Implementacao/ClienteImpl.java</file>
+            <file>file:/C:/desenvolvimentoJAVA/sistema_estoque_e_vendas/src/Implementacao/UsuarioImpl.java</file>
             <file>file:/C:/desenvolvimentoJAVA/sistema_estoque_e_vendas/src/Implementacao/ProdutoImpl.java</file>
             <file>file:/C:/desenvolvimentoJAVA/sistema_estoque_e_vendas/src/Formularios/Clientes.java</file>
         </group>

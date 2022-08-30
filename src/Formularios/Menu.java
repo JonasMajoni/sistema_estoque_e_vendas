@@ -11,7 +11,7 @@ public class Menu extends javax.swing.JFrame {
     private int perfil;
     private String senha;
     private String usuario;
-
+    
     PosicaoFormulario form = new PosicaoFormulario();
     
     public void setUsuarioImpl (UsuarioImpl usuarioimpl){
@@ -28,6 +28,10 @@ public class Menu extends javax.swing.JFrame {
     
     public void setupUsuario(String usuario){
         this.usuario = usuario;
+    }
+    
+    public String getupUsuario(){
+       return usuario;
     }
     
     public Menu() {
