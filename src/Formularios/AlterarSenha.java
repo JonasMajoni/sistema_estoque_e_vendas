@@ -142,10 +142,11 @@ public class AlterarSenha extends javax.swing.JDialog {
         usuari.setSenha(TxtNovaSenha.getText());
         usuari.setConfirmarSenha(TxtConfNvSenha.getText());
         usuari.setNomeLogin(usuario);
-
+       
+        
         UsuarioImpl usuarioImpl = new UsuarioImpl();
-        usuarioImpl.AlterarSenha(usuari, senha);
-        this.dispose();
+        usuarioImpl.AlterarSenha(usuari, TxtSenhaAtual.getText());
+        //this.dispose();
     }//GEN-LAST:event_BotaoAlterarActionPerformed
 
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed

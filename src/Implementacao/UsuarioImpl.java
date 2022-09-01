@@ -409,18 +409,18 @@ public class UsuarioImpl {
     public void AlterarSenha(Usuario usuario, String senhaAnterior) {
         ConexaoDB conexao = new ConexaoDB();
         conexao.conectar();
-
+        
         ResultSet rst = null;
 
+        
         String senhaAtual = usuario.getSenha();
         String senhaAntiga = "";
         try {
-            String sql = "SELECT Senha FROM usuario where NomeLogin = ? and Senha = ?";
+            String sql = "SELECT Senha FROM usuario where NomeLogin = ?";
 
             PreparedStatement pst = (PreparedStatement) conexao.conexao.prepareStatement(sql);
 
             pst.setString(1, usuario.getNomeLogin());
-            pst.setString(2, usuario.getSenha());
 
             rst = pst.executeQuery();
 
@@ -436,8 +436,13 @@ public class UsuarioImpl {
         
         
         
+        if(!usuario.getSenha().equals(usuario.getConfirmarSenha())){
+            JOptionPane.showMessageDialog(null, "as senhas não conferem");
+            return;
+        }
         
-        if(senhaAnterior != senhaAntiga){
+        
+        if(!senhaAnterior.equals(senhaAntiga)){
             JOptionPane.showMessageDialog(null, "Senha atual inválida");
             return;
         }
@@ -445,7 +450,9 @@ public class UsuarioImpl {
         if (senhaAtual.equals(senhaAntiga)) {
             JOptionPane.showMessageDialog(null, "A nova senha não pode ser igual a senha antiga.");
             return;
-        } else {
+        } 
+        
+        else {
 
             try {
                 String sql = "UPDATE usuario"
