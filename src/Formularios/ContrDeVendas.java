@@ -19,9 +19,11 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         this.dados = dados;
     }
     public ContrDeVendas() {
+        
         initComponents();
         ControleVendasImpl controlVendas = new ControleVendasImpl();
         controlVendas.listaClientes(CmbCliente);
+        controlVendas.listaProdutos(CmbProduto);
     }
 
     @SuppressWarnings("unchecked")
