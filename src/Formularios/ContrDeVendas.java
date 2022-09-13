@@ -2,6 +2,8 @@ package Formularios;
 
 import Classes.Opcao;
 import Classes.Dados;
+import Implementacao.ClienteImpl;
+import Implementacao.ControleVendasImpl;
 import utilidades.Utilidades;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -18,6 +20,8 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
     }
     public ContrDeVendas() {
         initComponents();
+        ControleVendasImpl controlVendas = new ControleVendasImpl();
+        controlVendas.listaClientes(CmbCliente);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,9 +31,9 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         TxtData = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        ComboBoxCliente = new javax.swing.JComboBox<>();
+        ComboBoxCliente = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
-        ComboBoxProduto = new javax.swing.JComboBox<>();
+        ComboBoxProduto = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         TxtQuantidade = new javax.swing.JTextField();
         BotaoPesqCliente = new javax.swing.JButton();
@@ -40,8 +44,8 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        CmbCliente = new javax.swing.JComboBox<>();
-        CmbProduto = new javax.swing.JComboBox<>();
+        CmbCliente = new javax.swing.JComboBox<String>();
+        CmbProduto = new javax.swing.JComboBox<String>();
         BtPesqCliente = new javax.swing.JButton();
         BtPesqProduto = new javax.swing.JButton();
         txtData = new javax.swing.JTextField();
@@ -117,6 +121,15 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         jLabel8.setText("Quantidade:");
 
         CmbCliente.setToolTipText("");
+        CmbCliente.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                CmbClienteAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         BtPesqCliente.setText("...");
 
@@ -252,10 +265,15 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+       
+        
         Opcao opcao = new Opcao("","Selecione o cliente");
         CmbCliente.addItem(opcao.toString());
-        for(int i=0; i < dados.NumeroDeClientes(); i++){
+        
+        
+        /*for(int i=0; i < dados.NumeroDeClientes(); i++){
             opcao = new Opcao(
+            
             dados.getClientes()[i].getCodCliente().toString(),
             dados.getClientes()[i].getNome() + " " +
             dados.getClientes()[i].getSobrenome());
@@ -263,7 +281,7 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
             CmbCliente.addItem(opcao.toString());
         }
         
-        
+        */
         opcao = new Opcao("","Selecione o produto");
         CmbProduto.addItem(opcao.toString());
         /*for(int i=0; i < dados.NumeroDeProdutos(); i++){
@@ -336,6 +354,11 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
             UserTable.addRow(RegistroContrVendas);
         }*/
     }//GEN-LAST:event_BotaoAdicionarActionPerformed
+
+    private void CmbClienteAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CmbClienteAncestorAdded
+        
+        ControleVendasImpl controlVendas = new ControleVendasImpl();
+    }//GEN-LAST:event_CmbClienteAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

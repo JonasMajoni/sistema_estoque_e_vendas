@@ -179,7 +179,7 @@ public class ClienteImpl {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar se o cliente já existe." + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao consultar se o cliente existe." + ex.getMessage());
             return false;
         }
         
