@@ -51,7 +51,7 @@ public class ControleVendasImpl {
                 cliente.setEmail(rst.getString("email"));
                 
                 listaClientes.add(cliente);
-                listaNome.add(rst.getString("nome"));
+                listaNome.add(rst.getString("codCliente") + " - " + rst.getString("nome"));
             }
             
              
@@ -98,7 +98,7 @@ public class ControleVendasImpl {
                 produto.setObs(rst.getString("obs"));
                 
                 listaProdutos.add(produto);
-                listaNome.add(rst.getString("descricao"));
+                listaNome.add(rst.getString("codproduto") + " - " + rst.getString("descricao"));
                 
             }
             

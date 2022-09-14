@@ -123,15 +123,6 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         jLabel8.setText("Quantidade:");
 
         CmbCliente.setToolTipText("");
-        CmbCliente.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                CmbClienteAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
 
         BtPesqCliente.setText("...");
 
@@ -195,21 +186,20 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
                             .addComponent(BtPesqProduto, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(BtPesqCliente, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQuantidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoAddCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(BotaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotaoDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotaoAddCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,7 +242,7 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -271,29 +261,12 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         
         Opcao opcao = new Opcao("","Selecione o cliente");
         CmbCliente.addItem(opcao.toString());
+      
         
-        
-        /*for(int i=0; i < dados.NumeroDeClientes(); i++){
-            opcao = new Opcao(
-            
-            dados.getClientes()[i].getCodCliente().toString(),
-            dados.getClientes()[i].getNome() + " " +
-            dados.getClientes()[i].getSobrenome());
-            
-            CmbCliente.addItem(opcao.toString());
-        }
-        
-        */
         opcao = new Opcao("","Selecione o produto");
         CmbProduto.addItem(opcao.toString());
-        /*for(int i=0; i < dados.NumeroDeProdutos(); i++){
-            opcao = new Opcao(
-            dados.getProdutos()[i].getCodProduto(),
-            dados.getProdutos()[i].getDescricao());
-            
-            CmbProduto.addItem(opcao.toString());
-        }
-        */
+       
+        
         txtData.setText(Utilidades.formatDate(new Date()));
         TxtQntTotal.setText(" "+"0");
         TxtValorTotal.setText(" "+"0");
@@ -356,11 +329,6 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
             UserTable.addRow(RegistroContrVendas);
         }*/
     }//GEN-LAST:event_BotaoAdicionarActionPerformed
-
-    private void CmbClienteAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CmbClienteAncestorAdded
-        
-        ControleVendasImpl controlVendas = new ControleVendasImpl();
-    }//GEN-LAST:event_CmbClienteAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
