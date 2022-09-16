@@ -125,10 +125,21 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
         CmbCliente.setToolTipText("");
 
         BtPesqCliente.setText("...");
+        BtPesqCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtPesqClienteActionPerformed(evt);
+            }
+        });
 
         BtPesqProduto.setText("...");
 
         txtData.setEnabled(false);
+
+        txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQuantidadeKeyTyped(evt);
+            }
+        });
 
         BotaoAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/IconAdicionar.png"))); // NOI18N
         BotaoAdicionar.setToolTipText("Adicionar");
@@ -191,8 +202,8 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
+                                .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(BotaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(BotaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,26 +320,22 @@ public class ContrDeVendas extends javax.swing.JInternalFrame {
              
         }
         
-        
-       /* int pos = dados.LinhaProdutos(( (Opcao)CmbProduto.getSelectedItem()).getValor());        
-        String RegistroContrVendas[] = new String[5];
-        RegistroContrVendas[0] = dados.getProdutos()[pos].getCodProduto();
-        RegistroContrVendas[1] = dados.getProdutos()[pos].getDescricao();
-        RegistroContrVendas[2] = "" + dados.getProdutos()[pos].getPreco();
-        RegistroContrVendas[3] = "" + quantidade;
-        RegistroContrVendas[4] = "" + (quantidade * dados.getProdutos()[pos].getPreco()); 
-        UserTable.addRow(RegistroContrVendas);
-        */
-        /*for(int i=0; i<dados.NumeroDeProdutos(); i++){
-            String RegistroContrVendas[] = new String[5];
-            RegistroContrVendas[0] = dados.getProdutos()[i].getCodProduto();
-            RegistroContrVendas[1] = dados.getProdutos()[i].getDescricao();
-            RegistroContrVendas[2] = "" + dados.getProdutos()[i].getPreco();
-            RegistroContrVendas[3] = "" + quantidade;
-            RegistroContrVendas[4] = "" + (quantidade * dados.getProdutos()[i].getPreco()); 
-            UserTable.addRow(RegistroContrVendas);
-        }*/
     }//GEN-LAST:event_BotaoAdicionarActionPerformed
+
+    private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
+        
+        String caracteres="0987654321";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtQuantidadeKeyTyped
+
+    private void BtPesqClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtPesqClienteActionPerformed
+        
+        TabelaClientes tabclientes = new TabelaClientes();
+        tabclientes.setVisible(true);
+        
+    }//GEN-LAST:event_BtPesqClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

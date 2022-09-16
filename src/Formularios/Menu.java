@@ -274,11 +274,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuAjudaSobreActionPerformed
 
     private void MenuMovimentosVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMovimentosVendasActionPerformed
-        // TODO add your handling code here:
+
         ContrDeVendas controleVendas = new ContrDeVendas();
-        //controleVendas.setDados(dados);
-        DesktopPainelMenu.add(controleVendas);
+        form.centralizarFormulario(controleVendas, DesktopPainelMenu);
         controleVendas.show();
+        
     }//GEN-LAST:event_MenuMovimentosVendasActionPerformed
 
     /**
